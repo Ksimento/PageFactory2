@@ -1,0 +1,3 @@
+# В этот файл добавляем HTML для проверки формата текста в СК5
+# Пример
+# format.test = <div class=ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-focused lang=ru dir=ltr role=textbox theme=system aria-label=Редактор, main contenteditable=true><p data-placeholder=Введите текст...><strong>один из нас</strong> только я <i>и только ьы</i>&nbsp;<i><strong><u> &nbsp;1232333</u></strong></i></p></div><span id=characters class=sc-oUfKm dVRddM>42 / 2000</span>

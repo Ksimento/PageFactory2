@@ -1,0 +1,128 @@
+# получение списка параметров конфигурации приложения
+parametersEditorGetConfigs = {"operationName":"parametersEditorGetConfigs","variables":{"frontConfigurationInput":[{"propertyCode":"front.student.profile.version.name","defaultValue":"v1"},{"propertyCode":"front.student.module.design.version.name","defaultValue":"v1"},{"propertyCode":"front.student.module.playlist.design.version.name","defaultValue":"0"},{"propertyCode":"front.studentCalendar.enabled","defaultValue":"true"},{"propertyCode":"front.min.safari.version","defaultValue":"13.0.3"},{"propertyCode":"front.error.report.history.enabled","defaultValue":"true"},{"propertyCode":"front.mediateka.sberbox.enabled","defaultValue":"false"},{"propertyCode":"edu.service.administration.videoconference.enabled","defaultValue":"false"},{"propertyCode":"edu.service.catalog.module.collections.enabled","defaultValue":"false"},{"propertyCode":"edu.service.catalog.selections.edit","defaultValue":"false"}],"entityIdList":[],"userId":null},"query":"query parametersEditorGetConfigs($frontConfigurationInput: [FrontConfigurationInput!]!, $entityIdList: [ID!]!, $userId: ID) {\n  systemAdmin {\n    getAllBackendConfigurations(entityIdList: $entityIdList, userId: $userId) {\n      ...ParametersEditorConfiguration\n      __typename\n    }\n    getConfigurations(frontConfigurationInput: $frontConfigurationInput, entityIdList: $entityIdList, userId: $userId) {\n      propertyCode\n      value\n      entityId\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ParametersEditorConfiguration on Configuration {\n  propertyCode\n  value\n  entityId\n  configurationMeta {\n    ...ParametersEditorConfigurationMeta\n    __typename\n  }\n  __typename\n}\n\nfragment ParametersEditorConfigurationMeta on ConfigurationMeta {\n  type\n  possibleValues {\n    value\n    displayableName\n    __typename\n  }\n  maxLength\n  minLength\n  regex\n  displayableName\n  groupDisplayableName\n  __typename\n}\n"}
+
+# создание пользователя СА + КС Школа АТ
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_EMAIL
+# USER_PHONE (номер телефона в формате 79529477733 без + вначале!)
+user.create.SA_KS.school_AT = {"operationName":"userEditorSystemAdminSaveUser","variables":{"user":{"firstName":"USER_FIRST_NAME","middleName":"USER_MIDDLE_NAME","lastName":"USER_LAST_NAME","login":"USER_LOGIN","status":"ACTIVE","email":"USER_EMAIL","mobilePhone":"USER_PHONE","parentRoles":[],"businessAdminRoles":[{"status":"ACTIVE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa"}],"systemAdminRole":{"status":"ACTIVE"},"newAndUpdatedFunctionalRoles":[{"code":"BASE_ROLE","schoolId":null,"dateEnd":null,"dateStart":null},{"code":"BUSINESS_ADM","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"TEACHER_MARK_STATISTICS","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"BUSINESS_STATISTICS","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"SCHOOL_USERS_ADM","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"BASE_ROLE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"CONTENT_BASE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null}],"deletedFunctionalRoles":[]}},"query":"mutation userEditorSystemAdminSaveUser($user: UserInput!) {\n  systemAdmin {\n    saveUser(user: $user) {\n      ...UserEditorSaveUserResult\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UserEditorSaveUserResult on User {\n  id\n  studentRoles {\n    ...UserEditorSaveUserStudentRole\n    __typename\n  }\n  __typename\n}\n\nfragment UserEditorSaveUserStudentRole on StudentRole {\n  id\n  schoolId\n  __typename\n}\n"}
+
+# создание пользователя КС Школа АТ
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_EMAIL
+user.create.KS.school_AT = {"operationName":"userEditorSystemAdminSaveUser","variables":{"user":{"firstName":"USER_FIRST_NAME","middleName":"USER_MIDDLE_NAME","lastName":"USER_LAST_NAME","login":"USER_LOGIN","status":"ACTIVE","email":"USER_EMAIL","parentRoles":[],"businessAdminRoles":[{"status":"ACTIVE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa"}],"newAndUpdatedFunctionalRoles":[{"code":"BUSINESS_STATISTICS","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"SCHOOL_USERS_ADM","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"TEACHER_MARK_STATISTICS","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"BUSINESS_ADM","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"CONTENT_BASE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"BASE_ROLE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null}],"deletedFunctionalRoles":[]}},"query":"mutation userEditorSystemAdminSaveUser($user: UserInput!) {\n  systemAdmin {\n    saveUser(user: $user) {\n      ...UserEditorSaveUserResult\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UserEditorSaveUserResult on User {\n  id\n  studentRoles {\n    ...UserEditorSaveUserStudentRole\n    __typename\n  }\n  __typename\n}\n\nfragment UserEditorSaveUserStudentRole on StudentRole {\n  id\n  schoolId\n  __typename\n}\n"}
+
+# создание пользователя Учитель Школа АТ
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_EMAIL
+# USER_PHONE (номер телефона в формате 79529477733 без + вначале!)
+# TEACHER_SUBJECT_ID
+user.create.TEACHER.school_AT = {"operationName":"userEditorSystemAdminSaveUser","variables":{"user":{"firstName":"USER_FIRST_NAME","middleName":"USER_MIDDLE_NAME","lastName":"USER_LAST_NAME","login":"USER_LOGIN","status":"ACTIVE","email":"USER_EMAIL","mobilePhone":"USER_PHONE","teacherRoles":[{"schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","status":"ACTIVE","subjects":["TEACHER_SUBJECT_ID"]}],"parentRoles":[],"newAndUpdatedFunctionalRoles":[{"code":"CONTENT_SCHOOL","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"BASE_ROLE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"TEACHER","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"CONTENT_BASE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null}],"deletedFunctionalRoles":[]}},"query":"mutation userEditorSystemAdminSaveUser($user: UserInput!) {\n  systemAdmin {\n    saveUser(user: $user) {\n      ...UserEditorSaveUserResult\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UserEditorSaveUserResult on User {\n  id\n  studentRoles {\n    ...UserEditorSaveUserStudentRole\n    __typename\n  }\n  __typename\n}\n\nfragment UserEditorSaveUserStudentRole on StudentRole {\n  id\n  schoolId\n  __typename\n}\n"}
+
+# создания пользователя Ученик Школа АТ (под СА, без года и класса)
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+user.create.STUDENT.school_AT = {"operationName":"userEditorSystemAdminSaveUser","variables":{"user":{"firstName":"USER_FIRST_NAME","middleName":"USER_MIDDLE_NAME","lastName":"USER_LAST_NAME","login":"USER_LOGIN","status":"ACTIVE","studentRoles":[{"status":"ACTIVE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","isGraduate":false}],"parentRoles":[],"newAndUpdatedFunctionalRoles":[{"code":"BASE_ROLE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"PEER2PEER","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"STUDENT","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null}],"deletedFunctionalRoles":[]}},"query":"mutation userEditorSystemAdminSaveUser($user: UserInput!) {\n  systemAdmin {\n    saveUser(user: $user) {\n      ...UserEditorSaveUserResult\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UserEditorSaveUserResult on User {\n  id\n  studentRoles {\n    ...UserEditorSaveUserStudentRole\n    __typename\n  }\n  __typename\n}\n\nfragment UserEditorSaveUserStudentRole on StudentRole {\n  id\n  schoolId\n  __typename\n}\n"}
+
+# создания пользователя Ученик, Любая школа (под СА, без года и класса)
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_EMAIL
+# SCHOOL_ID
+user.create.STUDENT = {"operationName":"userEditorSystemAdminSaveUser", "variables": {"user": {"firstName":"USER_FIRST_NAME", "middleName":"USER_MIDDLE_NAME", "lastName":"USER_LAST_NAME", "login":"USER_LOGIN", "email":"USER_EMAIL", "studentRoles":[{ "status":"ACTIVE", "schoolId":"SCHOOL_ID", "isGraduate":false }], "newAndUpdatedFunctionalRoles":[{ "code":"STUDENT",  "schoolId":"SCHOOL_ID"}], "deletedFunctionalRoles":[]}}, "query":"mutation userEditorSystemAdminSaveUser($user:UserInput!){systemAdmin{saveUser(user:$user ){id}}}"}
+
+# добавление роли студента
+# USER_FIRST_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_ID
+# USER_EMAIL
+# SCHOOL_ID
+user.add.role.STUDENT = {"operationName":"userEditorSystemAdminSaveUser","variables": {"user": {"firstName": "USER_FIRST_NAME", "lastName":"USER_LAST_NAME", "id": "USER_ID", "login": "USER_LOGIN", "email":"USER_EMAIL",  "studentRoles":[{ "status":"ACTIVE", "schoolId": "SCHOOL_ID", "isGraduate":false }],"newAndUpdatedFunctionalRoles":[{"code": "STUDENT", "schoolId": "SCHOOL_ID"}], "deletedFunctionalRoles":[] }} ,"query":"mutation userEditorSystemAdminSaveUser($user:UserInput!){systemAdmin{saveUser(user:$user ){id}}}"}
+
+# создания пользователя Родитель Школа АТ
+# USER_FIRST_NAME
+# USER_MIDDLE_NAME
+# USER_LAST_NAME
+# USER_LOGIN
+# USER_PARENT_CHILDREN_ID (использовать только один ID ученика)
+user.create.PARENT.school_AT = {"operationName":"userEditorSystemAdminSaveUser","variables":{"user":{"firstName":"USER_FIRST_NAME","middleName":"USER_MIDDLE_NAME","lastName":"USER_LAST_NAME","login":"USER_LOGIN","status":"ACTIVE","parentRoles":[{"schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","status":"ACTIVE","children":["USER_PARENT_CHILDREN_ID"]}],"newAndUpdatedFunctionalRoles":[{"code":"BASE_ROLE","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null},{"code":"PARENT","schoolId":"60714926-3d5b-41b4-af39-4a08bc1c5ffa","dateEnd":null,"dateStart":null}],"deletedFunctionalRoles":[]}},"query":"mutation userEditorSystemAdminSaveUser($user: UserInput!) {\n  systemAdmin {\n    saveUser(user: $user) {\n      ...UserEditorSaveUserResult\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UserEditorSaveUserResult on User {\n  id\n  studentRoles {\n    ...UserEditorSaveUserStudentRole\n    __typename\n  }\n  __typename\n}\n\nfragment UserEditorSaveUserStudentRole on StudentRole {\n  id\n  schoolId\n  __typename\n}\n"}
+
+# создание предмета под СА
+# "SUBJECT_NAME"
+# "SUBJECT_FULL_NAME"
+# "ORG_UNIT_ID"
+admin.create.subject = {"operationName":"subjectsEditorSaveSubjects","variables":{"subjects":[{"name":"SUBJECT_NAME","fullName":"SUBJECT_FULL_NAME","colour":null,"avatar":null,"orgUnitId":"ORG_UNIT_ID"}]},"query":"mutation subjectsEditorSaveSubjects($subjects: [SubjectInput!]!) {\n  systemAdmin {\n    saveSubjects(subjects: $subjects) {\n      id\n      name\n      fullName\n      __typename\n    }\n    __typename\n  }\n}\n"}
+
+# создание меты задания (без контента) под СА
+# TASK_TITLE
+admin.task.meta.create = {"operationName":"saveTask","variables":{"taskMeta":{"title":"TASK_TITLE","type":"TRAINING","checkType":"BY_TEACHER","attemptsNumber":3,"unlimitedAttempts":true,"assignmentType":"INDIVIDUAL","laboriousness":5,"softSkillTypes":[],"author":"Сисадмин Автотесты","licenseId":"1","links":"","pedagogicalTechniqueId":"","info":"","infoAttachmentFiles":[],"studentHint":"","teacherHint":"","attachmentFiles":[],"code":"","archived":false,"note":"","scope":{"code":"PRIVATE","schools":[],"users":[]},"tags":[],"taskCriteriaInput":[],"coAuthorIds":[]},"content":{"taskContent":"","pages":[],"contentType":"HTML"}},"query":"mutation saveTask($taskId: ID, $taskMeta: TaskMetaInput, $content: ContentInput, $linkModuleAndLevel: LinkModuleAndLevelInput, $linkSlot: LinkSlotInput) {\n  workshop {\n    saveTask(taskId: $taskId, taskMeta: $taskMeta, content: $content, linkModuleAndLevel: $linkModuleAndLevel, linkSlot: $linkSlot) {\n      id\n      content {\n        id\n        type\n        body\n        external {\n          id\n          contentLoad {\n            id\n            contentProvider {\n              id\n              name\n              description\n              externalContentProvider\n              __typename\n            }\n            created\n            description\n            __typename\n          }\n          contentProviderId\n          taskType\n          taskTypeId\n          taskName\n          subject\n          subjectId\n          stage\n          version\n          api\n          hash\n          jsonMeta\n          externalId\n          url\n          path\n          config\n          __typename\n        }\n        pages {\n          pageId\n          pageNumber\n          sections {\n            widgets {\n              widgetId\n              widgetNumber\n              contentWidgetType\n              body\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      modifyTime\n      modifyUser {\n        id\n        lastName\n        firstName\n        middleName\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"}
+
+# изменение даты в существующей контрольной
+# CLASS_SUBJECT_CONTROL_WORK_ID
+# PLAN_TIME
+teacher.update.date.controlwork = {"operationName":"setControlWorkPlanTime","variables":{"classSubjectControlWorkId":"CLASS_SUBJECT_CONTROL_WORK_ID","planTime":"PLAN_TIME"},"query":"mutation setControlWorkPlanTime($classSubjectControlWorkId: ID!, $planTime: DateTime!) {\n  teacher {\n    setControlWorkPlanTime(classSubjectControlWorkId: $classSubjectControlWorkId, planTime: $planTime) {\n      ...ControlWorkCommonFragment\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ControlWorkCommonFragment on ClassSubjectControlWork {\n  id\n  name\n  classSubjectName\n  classSubjectId\n  module {\n    id\n    title\n    __typename\n  }\n  planTime\n  startTime\n  closeTime\n  duration\n  comment\n  status\n  createTime\n  modifyTime\n  variants {\n    id\n    number\n    tasks {\n      id\n      title\n      parentTaskId\n      __typename\n    }\n    __typename\n  }\n  visible\n  totalNumberOfStudents\n  numberOfStudentsWithVariants\n  __typename\n}\n"}
+
+# запуск контрольной работы
+# CLASS_SUBJECT_CONTROL_WORK_ID
+teacher.start.controlwork = {"operationName":"changeControlWorkStatus","variables":{"classSubjectControlWorkId":"CLASS_SUBJECT_CONTROL_WORK_ID","newStatus":"STARTED"},"query":"mutation changeControlWorkStatus($classSubjectControlWorkId: ID!, $newStatus: ControlWorkStatus!) {\n  teacher {\n    changeControlWorkStatus(classSubjectControlWorkId: $classSubjectControlWorkId, newStatus: $newStatus) {\n      ...ControlWorkCommonFragment\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ControlWorkCommonFragment on ClassSubjectControlWork {\n  id\n  name\n  classSubjectName\n  classSubjectId\n  module {\n    id\n    title\n    __typename\n  }\n  planTime\n  startTime\n  closeTime\n  duration\n  comment\n  status\n  createTime\n  modifyTime\n  variants {\n    id\n    number\n    tasks {\n      id\n      title\n      parentTaskId\n      __typename\n    }\n    __typename\n  }\n  visible\n  totalNumberOfStudents\n  numberOfStudentsWithVariants\n  __typename\n}\n"}
+
+# завершение контрольной работы
+# CLASS_SUBJECT_CONTROL_WORK_ID
+teacher.end.controlwork = {"operationName":"changeControlWorkStatus","variables":{"classSubjectControlWorkId":"CLASS_SUBJECT_CONTROL_WORK_ID","newStatus":"CLOSED"},"query":"mutation changeControlWorkStatus($classSubjectControlWorkId: ID!, $newStatus: ControlWorkStatus!) {\n  teacher {\n    changeControlWorkStatus(classSubjectControlWorkId: $classSubjectControlWorkId, newStatus: $newStatus) {\n      ...ControlWorkCommonFragment\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ControlWorkCommonFragment on ClassSubjectControlWork {\n  id\n  name\n  classSubjectName\n  classSubjectId\n  module {\n    id\n    title\n    __typename\n  }\n  planTime\n  startTime\n  closeTime\n  duration\n  comment\n  status\n  createTime\n  modifyTime\n  variants {\n    id\n    number\n    tasks {\n      id\n      title\n      parentTaskId\n      __typename\n    }\n    __typename\n  }\n  visible\n  totalNumberOfStudents\n  numberOfStudentsWithVariants\n  __typename\n}\n"}
+
+# изменение feature flag в конфигурации
+# PROPERTY_CODE
+# VALUE
+# ENTITY_ID
+admin.save.configuration = {"operationName":"systemAdminSaveConfiguration","variables":{"configuration": [{"propertyCode":"PROPERTY_CODE", "value": "VALUE","entityId": "ENTITY_ID","userId":null}]},"query":"mutation systemAdminSaveConfiguration($configuration: [ConfigurationInput!]!) {systemAdmin{ saveConfiguration( configuration:$configuration, deletedConfiguration:[])}}"}
+
+# получение feature flag из конфигурации
+# PROPERTY_CODE
+# VALUE
+# ENTITY_ID
+admin.get.configuration = {"operationName":"systemAdminGetConfiguration","variables": {"frontConfigurationInput": { "propertyCode": "PROPERTY_CODE", "defaultValue": "VALUE"}, "entityIdList": "ENTITY_ID"}, "query":"query systemAdminGetConfiguration($frontConfigurationInput: [FrontConfigurationInput!]!, $entityIdList: [ID!]!) {systemAdmin {getConfigurations(frontConfigurationInput: $frontConfigurationInput, entityIdList: $entityIdList){propertyCode, value}}}"}
+
+# размещение студента в кластере
+# IDEMPOTENCY_KEY
+# SESSION
+# LOGIN
+# CAMPUS
+# HOST
+# EVENT
+# CREATED_TIME
+admin.cluster.student = {"idempotency_key": "IDEMPOTENCY_KEY", "session_id": "SESSION", "login": "LOGIN", "campus_id": "CAMPUS", "host_name": "HOST", "event_type": "EVENT", "created_time": "CREATED_TIME"}
+
+# Студент. Создание time slot для проверки
+# START_TIME
+# END_TIME
+student.mutation.addEventToTimetable = {"operationName":"studentAddEventToTimetable", "variables":{"start": "START_TIME", "end":"END_TIME"}, "query":"mutation studentAddEventToTimetable($start: DateTime!, $end: DateTime!) { student { addEventToTimetable(start: $start, end:$end){id} } }"}
+
+# Студент. Получение номера ответа на задание.
+# TASK_ID
+student.query.getTaskAnswers = {"operationName":"studentGetTaskAnswers", "variables":{"taskId": "TASK_ID"}, "query":"query studentGetTaskAnswers($taskId: ID!) {student {getTaskAnswers (taskId:$taskId) {id} }}"}
+
+# Студент. Запись задания на проверку
+# START_TIME
+# ANSWER_ID
+student.query.addBookingToEventSlot = {"operationName":"studentAddBookingToEventSlot", "variables":{"startTime": "START_TIME", "answerId":"ANSWER_ID"}, "query":"mutation studentAddBookingToEventSlot($startTime: DateTime!, $answerId: ID!){ student {addBookingToEventSlot(startTime: $startTime, answerId:$answerId){id} }}"}
+
+
+# Учитель. Домашние задания
+# ENTITY_ID
+# PROPERTY_CODE
+# VALUE
+admin.query.parametersSaveConfiguration = {"operationName":"parametersSaveConfiguration","variables":{"configuration":[{"entityId":"ENTITY_ID","propertyCode":"PROPERTY_CODE","value":"VALUE","userId":null}],"deletedConfiguration":[]},"query":"mutation parametersSaveConfiguration($configuration: [ConfigurationInput!]!, $deletedConfiguration: [ConfigurationDeleteInput!]) {\n  systemAdmin {\n    saveConfiguration(configuration: $configuration, deletedConfiguration: $deletedConfiguration)\n    __typename\n  }\n}\n"}

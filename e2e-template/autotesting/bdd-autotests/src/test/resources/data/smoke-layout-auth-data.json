@@ -1,0 +1,78 @@
+{
+  "DEV": {
+    "LOW": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    },
+    "NORMAL": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    },
+    "MAX": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    }
+  },
+  "PROD": {
+    "LOW": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    },
+    "NORMAL": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    },
+    "MAX": {
+      "studentEDU": "",
+      "parentEDU": "",
+      "teacherEDU": "",
+      "configuratorEDU": "",
+      "sysadminEDU": "",
+      "studentS21": "",
+      "configuratorS21": "",
+      "sysadminS21": "",
+      "studentMFE": "",
+      "parentMFE": ""
+    }
+  }
+}

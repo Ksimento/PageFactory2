@@ -1,0 +1,24 @@
+{
+  "predefined_data": {
+    "teacher_physics": {
+      "name": "kovalchuk-albert-at",
+      "password": "uqKu$PWNs5"
+    },
+    "sysadmin": {
+      "name": "sysadm-at",
+      "password": "uqKu$PWNs5"
+    },
+    "schooladmin": {
+      "name": "badm-at",
+      "password": "uqKu$PWNs5"
+    },
+    "student_rusakov": {
+      "name": "rusakov-gleb-at",
+      "password": "uqKu$PWNs5"
+    },
+    "parent_rusakov": {
+      "name": "parent-rusakov",
+      "password": "uqKu$PWNs5"
+    }
+  }
+}

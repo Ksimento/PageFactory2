@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    job-name: edupower-autotest
+  name: edupower-autotest
+spec:
+  backoffLimit: 1
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+        - name: edupower-autotest
+          image: harbor-dev.pcbltools.ru/education-release/postgres:11.10-alpine
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 32Mi
+          command:
+            - bash
+            - -c
+            - |
+              set -e
+              echo "
+              UPDATE edu_power_shard.personal_objectives
+                     SET start_date = CURRENT_DATE - 1, end_date= CURRENT_DATE + 1
+                     WHERE objective_id IN (101,102,103,104,105,107,108,110,111);
+              UPDATE edu_power_shard.personal_objective_chunks
+                     SET chunk_start_date = CURRENT_DATE - 1, chunk_end_date = CURRENT_DATE - 1
+                     WHERE chunk_id IN (274,277,280,283,286,290,292,295,299,301,304);
+              UPDATE edu_power_shard.personal_objective_chunks
+                     SET chunk_start_date = CURRENT_DATE, chunk_end_date = CURRENT_DATE
+                     WHERE chunk_id IN (275,278,281,284,287,291,293,296,300,302,305);
+              UPDATE edu_power_shard.personal_objective_chunks
+                     SET chunk_start_date = CURRENT_DATE + 1, chunk_end_date = CURRENT_DATE + 1
+                     WHERE chunk_id IN (276,279,282,285,288,294,297,303,306);
+              UPDATE edu_power_shard.personal_objectives
+                     SET start_date = CURRENT_DATE - 2, end_date= CURRENT_DATE
+                     WHERE objective_id IN (106,109);
+              UPDATE edu_power_shard.personal_objective_chunks
+                     SET chunk_start_date = CURRENT_DATE - 2, chunk_end_date = CURRENT_DATE - 2
+                     WHERE chunk_id IN (289,298);
+              " |
+                    psql -U postgres -h postgres -t edu_power_shard_1
+          env:
+            - name: MIGRATION_VERSION
+              value: "%00010.02263.010"
+            - name: PGPASSWORD
+              value: "postgres"
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: new-school-registry

@@ -1,0 +1,46 @@
+dashboard = /dashboard
+
+# форма создания нового модуля
+module.constructor = /materials/modules/create_module
+
+# форма создания нового задания
+task.constructor = /materials/modules/task
+
+# материалы - задания
+materials.tasks = /materials/tasks
+
+# создание нового задания из модуля check text task teacher, в уровень 3.0
+task.constructor.from.module.check_text_task_teacher.3.0 = /materials/modules/task?redirectURL=/materials/modules/edit/610&tabId=tasks&moduleId=610&level=3&levelId=2417&goalElementId=3022&tsId=619&tsType=BASE&moduleTitle=Математика&moduleStage=5&moduleName=check%20text%20task%20teacher
+
+# форма создания задания для модуля Модуль для генерации заданий Survey, в уровень 2.0
+task.constructor.from.module.generate.survey.2.0 = /materials/modules/task?redirectURL=/materials/modules/edit/657&tabId=tasks&moduleId=657&level=2&levelId=2608&goalElementId=3213&tsId=667&tsType=BASE&moduleTitle=История&moduleStage=5&moduleName=Модуль%20для%20генерации%20заданий%20Survey
+
+# страница системы заданий модуля "Модуль для генерации заданий Survey"
+task.system.module.generate.survey = /materials/modules/edit/657?tabId=tasks
+
+# создание нового здания под конфигуратором в школе
+configurator.add.building = /my-school/buildings/new
+
+# форма создания пользователя
+add.user = /user/new
+
+# страница профиля ученика
+student.profile = /profile
+
+# страница аккаунта
+account = /account
+
+# прямые ссылки на модули для ученика
+химия. модуль для тестирования геймификации часть 3 = /trajectory/602
+химия. модуль для тестирования геймификации часть 4 = /trajectory/604
+химия. модуль для тестирования геймификации часть 2 = /trajectory/605
+технология. модуль по технологии 4 = /trajectory/644
+технология. модуль по технологии 5 = /trajectory/645
+технология. модуль по технологии 6 = /trajectory/646
+математика. модуль check text task teacher = /trajectory/610
+история. модуль для генерации заданий Survey = /trajectory/657
+
+# проверка заданий учителем
+Смена статуса (ученик) статус FAILED = tasks/7b071d66-ed93-46b0-9c64-224097d3962c/11698
+Смена статуса (ученик) статус Success = /tasks/7b071d66-ed93-46b0-9c64-224097d3962c/11700
+Проверка учителем = /tasks/7b071d66-ed93-46b0-9c64-224097d3962c/17032

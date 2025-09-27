@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>useful-things-config</artifactId>
+        <groupId>ru.sbt.edu_power.useful_things</groupId>
+        <version>46.0.0-2022.03.15-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>test_manager</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.sbt.edu_power.useful_things</groupId>
+            <artifactId>risk_assessment</artifactId>
+            <version>46.0.0-2022.03.15-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.sbt.edu_power.useful_things</groupId>
+            <artifactId>confluence_reporting</artifactId>
+            <version>46.0.0-2022.03.15-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <goals>
+                    <goal>java</goal>
+                </goals>
+                <configuration>
+                    <mainClass>ru.sbt.edu_power.test_manager.Main</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>riskLevel</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${riskLevel}</value>
+                                </property>
+                                <property>
+                                    <name>testRunKey</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${testRunKey}</value>
+                                </property>
+                                <property>
+                                    <name>jiraProjectKey</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${jiraProjectKey}</value>
+                                </property>
+                                <property>
+                                    <name>jobUrl</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${jobUrl}</value>
+                                </property>
+                                <property>
+                                    <name>testManagerProcess</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${testManagerProcess}</value>
+                                </property>
+                                <property>
+                                    <name>skipRiskUpdate</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${skipRiskUpdate}</value>
+                                </property>
+                                <property>
+                                    <name>repository</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${repository}</value>
+                                </property>
+                                <property>
+                                    <name>bb.login</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${bbLogin}</value>
+                                </property>
+                                <property>
+                                    <name>bb.password</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${bbPass}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

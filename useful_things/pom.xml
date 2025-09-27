@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.sbt.edu_power.useful_things</groupId>
+    <artifactId>useful-things-config</artifactId>
+    <version>46.0.0-2022.03.15-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <nexus.login/>
+        <nexus.password/>
+        <bb.login/>
+        <bb.password/>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.sbt.edu_power</groupId>
+            <artifactId>external_services</artifactId>
+            <version>46.0.0-2022.03.19-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>https://nexus-dev.pcbltools.ru/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>https://nexus-dev.pcbltools.ru/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>bbLogin</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${bbLogin}</value>
+                                </property>
+                                <property>
+                                    <name>bbPassword</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${bbPass}</value>
+                                </property>
+                                <property>
+                                    <name>nexusLogin</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${nexusLogin}</value>
+                                </property>
+                                <property>
+                                    <name>nexusPassword</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${nexusPassword}</value>
+                                </property>
+                                <property>
+                                    <name>botToken</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${botToken}</value>
+                                </property>
+                                <property>
+                                    <name>appToken</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${appToken}</value>
+                                </property>
+                                <property>
+                                    <name>jiraProjectKey</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${jiraProjectKey}</value>
+                                </property>
+                                <property>
+                                    <name>slackChannel</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>${slackChannel}</value>
+                                </property>
+                                <property>
+                                    <name>botEnv</name>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <value>prod</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <!-- Профиль для установки параметров из файла .env-->
+        <profile>
+            <id>env</id>
+            <activation>
+                <file>
+                    <exists>../.env</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>properties-maven-plugin</artifactId>
+                        <version>1.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>read-props</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>read-project-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <files>
+                                        <file>../.env</file>
+                                    </files>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>wright-sys-props</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>set-system-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <properties>
+                                        <property>
+                                            <name>bbLogin</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${bbLogin}</value>
+                                        </property>
+                                        <property>
+                                            <name>bbPassword</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${bbPass}</value>
+                                        </property>
+                                        <property>
+                                            <name>nexusLogin</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${nexusLogin}</value>
+                                        </property>
+                                        <property>
+                                            <name>nexusPassword</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${nexusPassword}</value>
+                                        </property>
+                                        <property>
+                                            <name>botToken</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${botToken}</value>
+                                        </property>
+                                        <property>
+                                            <name>appToken</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${appToken}</value>
+                                        </property>
+                                        <property>
+                                            <name>botEnv</name>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <value>${botEnv}</value>
+                                        </property>
+                                    </properties>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

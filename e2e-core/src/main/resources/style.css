@@ -1,0 +1,126 @@
+input {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    position: fixed;
+}
+
+body {
+    font-size: 20px;
+    font-family: "Droid Sans", sans-serif;
+}
+
+.roles-filter label {
+    text-transform: capitalize;
+}
+
+label {
+    cursor: pointer;
+}
+
+div.page-wrapper {
+    display: none;
+}
+
+input#role_sysadmin:checked ~ div.data-wrapper div.page-wrapper.role_sysadmin,
+input#role_configurator:checked ~ div.data-wrapper div.page-wrapper.role_configurator,
+input#role_teacher:checked ~ div.data-wrapper div.page-wrapper.role_teacher,
+input#role_student:checked ~ div.data-wrapper div.page-wrapper.role_student,
+input#role_parent:checked ~ div.data-wrapper div.page-wrapper.role_parent {
+    display: block;
+}
+
+input#role_sysadmin:checked ~ input#data-volume_LOW:checked ~ div.data-wrapper div.item-container.role_sysadmin.data-volume_LOW,
+input#role_sysadmin:checked ~ input#data-volume_NORMAL:checked ~ div.data-wrapper div.item-container.role_sysadmin.data-volume_NORMAL,
+input#role_sysadmin:checked ~ input#data-volume_MAX:checked ~ div.data-wrapper div.item-container.role_sysadmin.data-volume_MAX,
+
+input#role_configurator:checked ~ input#data-volume_LOW:checked ~ div.data-wrapper div.item-container.role_configurator.data-volume_LOW,
+input#role_configurator:checked ~ input#data-volume_NORMAL:checked ~ div.data-wrapper div.item-container.role_configurator.data-volume_NORMAL,
+input#role_configurator:checked ~ input#data-volume_MAX:checked ~ div.data-wrapper div.item-container.role_configurator.data-volume_MAX,
+
+input#role_teacher:checked ~ input#data-volume_LOW:checked ~ div.data-wrapper div.item-container.role_teacher.data-volume_LOW,
+input#role_teacher:checked ~ input#data-volume_NORMAL:checked ~ div.data-wrapper div.item-container.role_teacher.data-volume_NORMAL,
+input#role_teacher:checked ~ input#data-volume_MAX:checked ~ div.data-wrapper div.item-container.role_teacher.data-volume_MAX,
+
+input#role_student:checked ~ input#data-volume_LOW:checked ~ div.data-wrapper div.item-container.role_student.data-volume_LOW,
+input#role_student:checked ~ input#data-volume_NORMAL:checked ~ div.data-wrapper div.item-container.role_student.data-volume_NORMAL,
+input#role_student:checked ~ input#data-volume_MAX:checked ~ div.data-wrapper div.item-container.role_student.data-volume_MAX,
+
+input#role_parent:checked ~ input#data-volume_LOW:checked ~ div.data-wrapper div.item-container.role_parent.data-volume_LOW,
+input#role_parent:checked ~ input#data-volume_NORMAL:checked ~ div.data-wrapper div.item-container.role_parent.data-volume_NORMAL,
+input#role_parent:checked ~ input#data-volume_MAX:checked ~ div.data-wrapper div.item-container.role_parent.data-volume_MAX {
+    display: block;
+}
+div.item-container {
+    display: none;
+}
+
+input#role_sysadmin:checked ~ div.filter-wrapper div.roles-filter label[for="role_sysadmin"],
+input#role_configurator:checked ~ div.filter-wrapper div.roles-filter label[for="role_configurator"],
+input#role_teacher:checked ~ div.filter-wrapper div.roles-filter label[for="role_teacher"],
+input#role_student:checked ~ div.filter-wrapper div.roles-filter label[for="role_student"],
+input#role_parent:checked ~ div.filter-wrapper div.roles-filter label[for="role_parent"],
+input#data-volume_LOW:checked ~ div.filter-wrapper div.data-volume-filter label[for = "data-volume_LOW"],
+input#data-volume_NORMAL:checked ~ div.filter-wrapper div.data-volume-filter label[for = "data-volume_NORMAL"],
+input#data-volume_MAX:checked ~ div.filter-wrapper div.data-volume-filter label[for = "data-volume_MAX"] {
+    font-weight: 600;
+    background-color: antiquewhite;
+}
+
+div.filter-wrapper {
+    border: 2px solid rgba(15, 4, 135, 0.25);
+    width: 700px;
+    padding: 10px;
+    margin: 10px;
+}
+
+label {
+    margin: 3px 5px;
+    padding: 3px 5px;
+    display: inline-block;
+}
+
+input.page-sections + div {
+    display: none;
+}
+
+input.page-sections:checked + div {
+    display: flex;
+}
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+input.item-sections:checked + div {
+    border: 2px solid rgba(15, 4, 135, 0.55);
+}
+
+.item-container {
+    max-width: 28%;
+    border: 2px solid rgba(15, 4, 135, 0.25);
+    border-radius: 7px;
+    padding: 1%;
+    margin: 1%;
+}
+
+input#big-size-toggle:checked ~ div.data-wrapper .item-container {
+    max-width: 45%;
+}
+
+input#big-size-toggle:checked ~ div.filter-wrapper label.to-big-size-toggle,
+input#big-size-toggle:not(:checked) ~ div.filter-wrapper label.to-small-size-toggle{
+    display: none;
+}
+input#big-size-toggle:checked ~ div.filter-wrapper label.to-small-size-toggle,
+input#big-size-toggle:not(:checked) ~ div.filter-wrapper label.to-big-size-toggle{
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 15px;
+}

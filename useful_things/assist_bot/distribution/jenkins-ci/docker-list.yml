@@ -1,0 +1,4 @@
+- imageName: "regressman-bot"
+  dockerDir: "distribution/docker"
+  resources:
+    - "target/*.jar"

@@ -1,0 +1,85 @@
+body {
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #333;
+    margin: 0 0 100px 0;
+}
+body > ul {
+    margin: auto;
+    padding: 0;
+    max-width: 1300px;
+}
+span {
+    color: #777;
+    font-size: 90%;
+}
+a {
+    text-decoration: none;
+}
+.secondary {
+    color: #777;
+    font-size: 90%;
+    font-style: italic;
+}
+body > ul > li {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+    list-style: none;
+}
+.hidden {
+    display: none;
+}
+.hidden:checked ~ .hided-block {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+ul.hided-block {
+    transition: all 0.3s;
+    max-height: 10000px;
+    overflow: hidden;
+}
+li {
+    margin-bottom: 10px;
+}
+li.broken::marker, li.failed::marker {
+    color: red;
+}
+li.failed {
+    border-color: red;
+}
+li.passed::marker {
+    color: darkseagreen;
+}
+li.fixed {
+    border-color: darkseagreen;
+}
+li.skipped::marker {
+    color: darkgray;
+}
+li.skipped {
+    border-color: darkgray;
+}
+li.added {
+    border-color: cornflowerblue;
+}
+li.removed {
+    border-color: darksalmon;
+}
+label.has-data {
+    cursor: pointer;
+}
+li.numeric {
+    list-style: decimal-leading-zero;
+}
+.message {
+    max-width: 1300px;
+    margin: auto;
+}
+.message > div {
+    border: 1px solid rgba(0,0,0,.3);
+    margin: 10px;
+    padding: 10px;
+}

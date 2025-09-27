@@ -1,0 +1,57 @@
+---
+edupower_back:
+  deploy: false
+  dockertag: PLACEHOLDER
+  k8s_config_branch: '-'
+edupower_front:
+  deploy: false
+  dockertag: PLACEHOLDER
+  k8s_config_branch: '-'
+edupower_catalog:
+  deploy: false
+  dockertag: PLACEHOLDER
+  k8s_config_branch: '-'
+school21_front:
+  deploy: false
+  dockertag: PLACEHOLDER
+  k8s_config_branch: '-'
+school21_front_exam:
+  deploy: false
+  dockertag: PLACEHOLDER
+  k8s_config_branch: '-'
+
+microservices:
+  - servicename: dataspace-core-schoolgroup
+    dockertag: 0.1.0-build.4
+    k8s_config_branch: master
+    deploy: true
+  - servicename: org-structure
+    dockertag: PLACEHOLDER
+    k8s_config_branch: '-'
+    deploy: false
+  - servicename: edu-registration-service
+    dockertag: develop
+    k8s_config_branch: master
+    deploy: false
+  - servicename: edu-user-service
+    dockertag: PLACEHOLDER
+    k8s_config_branch: '-'
+    deploy: false
+  - servicename: apim-gravitee
+    dockertag: 3.12.2
+    k8s_config_branch: master
+    deploy: true
+  - servicename: keycloak-sber
+    dockertag: PLACEHOLDER
+    k8s_config_branch: '-'
+    deploy: true
+
+microfrontend:
+  edupower_frontend_mfe:
+    deploy: true
+    dockertag: PLACEHOLDER
+    k8s_config_branch: ''
+
+elspet:
+  deploy: true
+  elspet_deploy_versions: master

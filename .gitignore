@@ -1,0 +1,7 @@
+dev.properties
+.idea
+.idea/**
+*.iml
+*.ipr
+.embeddings
+target/

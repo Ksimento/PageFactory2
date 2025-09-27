@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: regressman-bot
+    version: TAG_PLACEHOLDER
+  name: regressman-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: regressman-bot
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: regressman-bot
+    spec:
+      containers:
+        - name: regressman-bot
+          image: harbor-dev.pcbltools.ru/education-release/regressman-bot:TAG_PLACEHOLDER
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: regressman-secret
+          resources:
+            #   limits:
+            #     memory: 1024Mi
+            requests:
+              memory: 256Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: new-school-registry
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
